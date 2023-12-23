@@ -1,0 +1,63 @@
+package LeetCode;
+
+import java.util.Scanner;
+
+public class Maximum_Score_After_Splitting_a_String {
+    public int maxScore(String s) {
+        int max=0;
+        for(int i=0;i<s.length();i++){
+            int zero=0,one=0;
+            String k =s.substring(0,i+1);
+            int k11=k.length(),k22=0;
+            String l=s.substring(i+1,s.length());
+            System.out.println(k+" "+l);
+            int l11=l.length(),l22=0;
+            if(k=="" || l==""){
+                break;
+            }
+            for(int j=0;j<k.length();j++){
+                if(k22<=k11 &&'0'==k.charAt(j)){
+                    zero++;
+                    k22++;
+                }
+            }
+            for(int j=0;j<l.length();j++){
+                if(l22<=l11 && l.charAt(j)=='1'){
+                    one++;
+                    l22++;
+                }
+            }
+            System.out.println(one+zero);
+            if(one+zero >max){
+                max=one+zero;
+            }
+        }
+        return max;   
+    }
+    public static void main(String args[]) {
+    	Scanner sc=new Scanner(System.in);
+    	String s=sc.nextLine();
+    	Maximum_Score_After_Splitting_a_String n=new Maximum_Score_After_Splitting_a_String();
+    	n.maxScore(s);
+    }
+
+}
+/*
+input:
+	011101
+
+output:
+	0 11101
+	5 
+	01 1101
+	4
+	011 101
+	3
+	0111 01
+	2
+	01110 1
+	3
+	
+	return max value = 5
+
+*/
